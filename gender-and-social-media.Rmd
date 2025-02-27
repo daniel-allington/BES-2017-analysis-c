@@ -14,6 +14,24 @@ H1 Gender is associated with Facebook use
 ```{r setup}
 library(dplyr)
 library(readr)
+library(ggplot2)
+
+options(scipen = 999)
 
 bes_2017 <- read_csv('../data/BES-2017-f2f-gender-fb-tw.csv')
 ```
+
+```{r visualisation}
+bes_2017 %>%
+  ggplot(aes(x = Gender, fill = Use_Facebook)) +
+  geom_bar(position = 'dodge')
+```
+
+```{r significance-test}
+chisq.test(
+  x = bes_2017$Gender,
+  y = bes_2017$Use_Facebook
+)
+```
+
+
